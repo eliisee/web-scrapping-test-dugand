@@ -33,7 +33,6 @@ print("Le token a été ajouté à 'results.csv'.")
 
 # Initialisation des listes pour stocker les données
 quotes = []
-authors = []
 tags = []
 
 # Récupérer les citations des pages 1 et 2 avec le tag 'books'
@@ -45,13 +44,11 @@ for page in range(1, 3):
         quote_tags = [tag.get_text() for tag in quote.find_all('a', class_='tag')]
         if 'books' in quote_tags:
             quotes.append(quote.find('span', class_='text').get_text())
-            authors.append(quote.find('small', class_='author').get_text())
             tags.append(", ".join(quote_tags))
 
 # Création d'un DataFrame pour les nouvelles citations
 new_df = pd.DataFrame({
     'Quote': quotes,
-    'Author': authors,
     'Tags': tags
 })
 
